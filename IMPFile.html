@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Secret Love 💖</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400&display=swap" rel="stylesheet">
+<style>
+body {
+    margin: 0;
+    background: black;
+    color: white;
+    font-family: Arial;
+    text-align: center;
+    overflow: hidden;
+}
+
+/* Password Screen */
+#lockScreen {
+    margin-top: 30vh;
+}
+
+input {
+    padding: 10px;
+    font-size: 18px;
+    border-radius: 10px;
+    border: none;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 18px;
+    border-radius: 20px;
+    border: none;
+    background: pink;
+    cursor: pointer;
+}
+
+/* Love Screen */
+#lovePage {
+    display: none;
+}
+
+#cursor {
+    display: inline-block;
+    margin-left: 5px;
+    animation: blink 1s steps(1) infinite;
+}
+@keyframes blink{
+    50%{ opacity: 0;}
+}
+
+h1 {
+    font-size: 20px;
+    margin-top: 20vh;
+    font-weight: 300;
+    font-family: 'Poppins',sans-serif;
+    padding-left: 40px;
+    padding-right: 40px;
+}
+
+/* Hearts */
+.heart {
+    position: absolute;
+    color: red;
+    animation: float 5s linear infinite;
+}
+
+@keyframes float {
+    from {transform: translateY(100vh);}
+    to {transform: translateY(-10vh);}
+}
+.bigHeart {
+    font-size: 100px;
+    position: relative;
+}
+
+.bigHeart span {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 20px;
+    color: white;
+}
+</style>
+
+</head>
+
+<body>
+
+<!-- Password Screen -->
+<div id="lockScreen">
+    <h2>Enter Secret Password for unlock a little message...🔐</h2>
+    <input type="password" id="pass">
+    <br><br>
+    <button onclick="check()"> Open 💌</button>
+</div>
+
+<!-- Love Page -->
+<div id="lovePage">
+    <h1><span id="text"></span><span id="cursor">|</span></h1>
+</div>
+<script>
+let correctPassword = "1803"; // 🔐 Change this
+
+function check() {
+    let userPass = document.getElementById("pass").value;
+
+    if(userPass === correctPassword) {
+        document.getElementById("lockScreen").style.display = "none";
+        document.getElementById("lovePage").style.display = "block";
+        typing();
+        setInterval(createHeart, 200);
+    } else {
+        alert("Wrong Password betuu");
+    }
+}
+
+// 💌 Word-by-word typing
+let message = "💌 Hellooow handsome....!💌<br> <br> 💖 YOU KNOW WHAT...ab muje aapse akdm dil se bhariii vala pyar hone laga haii yaaarr😭<br> BUT Betuu Yaar i'm scared cuz <br> what if.. aap har roj muje choose nhi kar payee and hmari fight ho vo thik hai lekin what if.. aap ak din kisi fight ki vjese ya fir kisi din kuch or reason ki vjese aap mujse thak jaye what if.. aapko lgne lage ki ab aap ye sab handle nhi kr skoge what if.. aapko aesa lage ki aap har roj sirf or sirf muje choose nhi kr skoge and most imp is what if.. jab mrrg ki baat aaye or mere ghar vale mana kr de or aap vhi se give up krde or vhi aap bol de ki rehne dete haii ab koi aur dhoondh lee yaarrr tyare am je joitu che aeee jjj aagar mari side nyy hoii tooo hu tyare su krissss 😭 bovvvv overthinking thay yarrr.. please kyarey kay pan thay to solve krjeee bdhu meki na detoo yaarrr please mari haree jjj rejeeee.... MISS YOU YAAAARR....😭<br> baki hu to tarii jj chuu don't worryyy betuu 💞 <br> ALWAYS I LOVE YOUUUH BETUUUUU 💖💌";
+let words = message.split(" ");
+let i = 0;
+
+function typing() {
+    if (i < words.length) { 
+        document.getElementById("text").innerHTML += words[i] + " ";
+        i++;
+        setTimeout(typing, 500);
+        
+    }
+}
+
+// 💖 Hearts animation
+function createHeart() {
+    let heart = document.createElement("div");
+    heart.className = "heart";
+    heart.innerHTML = "💓";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.fontSize = (Math.random()*20+10) + "px";
+    document.body.appendChild(heart);
+
+    setTimeout(() => heart.remove(), 5000);
+}
+</script>
+
+</body>
+</html>
